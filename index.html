@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Selamat Ulang Tahun Mira</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to bottom, #ffe6f0, #e6f7ff);
+      overflow: hidden;
+    }
+
+    .container {
+      display: none;
+      width: 90%;
+      max-width: 600px;
+      background-color: #fffafc;
+      border-radius: 25px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      margin: 60px auto;
+      position: relative;
+      transition: all 0.5s ease;
+      animation: fadeIn 1s ease;
+      z-index: 10;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    h1 {
+      color: #ff5c8d;
+      font-size: 2.2em;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      background-color: #ff69b4;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff4081;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .emoticon {
+      font-size: 2em;
+      margin: 10px 0;
+    }
+
+    /* Confetti */
+    canvas.confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100vw;
+      height: 100vh;
+      z-index: 100;
+    }
+
+    /* Hearts background */
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .hearts span {
+      position: absolute;
+      display: block;
+      color: pink;
+      font-size: 20px;
+      animation: float 10s infinite ease-in;
+      opacity: 0.6;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+    <div id="welcomeScreen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(to bottom right, #fff0f5, #ffe6f0); display: flex; justify-content: center; align-items: center; z-index: 999;">
+        <div style="text-align: center;">
+          <h1 style="font-size: 2.5em; color: #ff69b4;">💌 Untuk Mira Tersayang 💌</h1>
+          <p style="margin-top: 10px; font-size: 1.2em;">Klik tombol di bawah ini yaa, ada sesuatu buat kamu 😚</p>
+          <button onclick="startUlangTahun()" style="margin-top: 20px; padding: 12px 24px; font-size: 1em; border: none; background-color: #ff69b4; color: white; border-radius: 12px; cursor: pointer;">Buka Ucapan 🎁</button>
+        </div>
+      </div>
+      
+  <!-- Latar Belakang Hati -->
+  <div class="hearts">
+    <span style="left: 10%;">💗</span>
+    <span style="left: 30%;">💖</span>
+    <span style="left: 50%;">💘</span>
+    <span style="left: 70%;">💝</span>
+    <span style="left: 90%;">💕</span>
+  </div>
+
+  <!-- Konten Ucapan -->
+  <div class="container">
+    <div class="slide active" id="slide1">
+      <h1>🌸 Selamat Ulang Tahun Mira! 🌸</h1>
+      <div class="emoticon">🎉😄🎂</div>
+      <img src="img/Screenshot 2025-04-17 171010.png" alt="Bunga Ulang Tahun">
+      <p>Mira sayang, semoga harimu seindah bunga yang bermekaran dan seceria tawamu~ 💐
+        karena hari ini kamu lahir ke dunia. Dunia jadi lebih indah sejak kamu ada.
+      </p>
+      <button onclick="nextSlide()">Lanjut ➡️</button>
+    </div>
+
+    <div class="slide" id="slide2">
+      <h1>🎁 Harapan Terbaik untuk Mira 🎁</h1>
+      <div class="emoticon">💖😊🌟</div>
+      <img src="img/images.jpg" alt="Ucapan Harapan">
+      <p>Semoga panjang umur, sehat selalu, rejeki lancar, dan "Maaf ya Mira... aku tahu aku pernah bikin kamu marah, mungkin kecewa... tapi hatiku selalu untuk kamu. Hari ini aku cuma pengen kamu tahu — aku sayang kamu. Selamat ulang tahun ya, cantikku 💖
+        semua impian Mira tercapai ✨
+      </p>
+      <button onclick="nextSlide()">Lanjut ➡️</button>
+    </div>
+
+    <div class="slide" id="slide3">
+      <h1>🎂 Ini kue buat, Mira! 🎂</h1>
+      <div class="emoticon">🧁😋🍰</div>
+      <img src="img/download.jpg" alt="Kue Ulang Tahun">
+      <p>Maaf ya cuma bisa ngasih kue yang kek gini, semoga kamu suka yaa ^^🕯️<br>Aku sayang Mira 💕 by wayu</p>
+      <button onclick="restart()">Ulangi 🔁</button>
+    </div>
+  </div>
+
+  <canvas class="confetti"></canvas>
+
+  <!-- Musik -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 3;
+
+    function nextSlide() {
+      document.getElementById(`slide${currentSlide}`).classList.remove("active");
+      currentSlide++;
+      document.getElementById(`slide${currentSlide}`).classList.add("active");
+
+      if (currentSlide === totalSlides) {
+        // Confetti muncul di slide terakhir
+        confetti({
+          particleCount: 150,
+          spread: 100,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    function restart() {
+      document.getElementById(`slide${currentSlide}`).classList.remove("active");
+      currentSlide = 1;
+      document.getElementById("slide1").classList.add("active");
+    }
+
+    function startUlangTahun() {
+  document.getElementById("welcomeScreen").style.display = "none";
+  document.querySelector(".container").style.display = "block";
+  document.getElementById("bgMusic").play();
+}
+
+
+    // Untuk play musik di mobile saat diklik
+    document.body.addEventListener("click", () => {
+      document.getElementById("bgMusic").play();
+    });
+  </script>
+
+</body>
+</html>
